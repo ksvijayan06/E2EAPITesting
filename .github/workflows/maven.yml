@@ -8,6 +8,12 @@
 
 name: API Test Automation
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+  issues: write
+
 on:
   push:
     branches: [ "master" ]
@@ -51,5 +57,5 @@ jobs:
       uses: dorny/test-reporter@v1
       with:
         name: TestNG Result
-        path: target/surefire-reports/junitreports/TEST-*.xml
+        path: test-output/junitreports/TEST-*.xml
         reporter: java-junit
