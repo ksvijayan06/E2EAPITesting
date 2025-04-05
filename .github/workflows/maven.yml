@@ -47,15 +47,16 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4.6.2
       with:
-    # Artifact name
+        # Artifact name
         name: Logs #artifact name
-    # A file, directory or wildcard pattern that describes what to upload
+        # A file, directory or wildcard pattern that describes what to upload
         path: logs/
 
+    #configure the test report by default we able to integrate junit repot only
     - name: Publish Test Report
       if: always()
       uses: dorny/test-reporter@v1
       with:
         name: TestNG Result
-        path: target/surefire-reports/junitreports/TEST-*.xml
+        path: target/surefire-reports/junitreports/TEST-*.xml 
         reporter: java-junit
