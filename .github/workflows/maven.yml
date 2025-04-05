@@ -45,3 +45,12 @@ jobs:
         name: Logs #artifact name
     # A file, directory or wildcard pattern that describes what to upload
         path: logs/
+    
+    #configure to store the test report
+      - name: Publish Test Report
+      if: always()
+      uses: dorny/test-reporter@v1
+      with:
+        name: TestNG Results
+        path: target/surefire-reports/junitreports/TEST-*.xml
+        reporter: java-junit
