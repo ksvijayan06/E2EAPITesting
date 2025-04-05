@@ -14,7 +14,7 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '30 7 * * *'
+    - cron: '30 7 * * *' #crone job schedule at 1.00PM IST
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-      #update the java versions[I modified it]
+      #update the java versions
     - name: Set up JDK 11
       uses: actions/setup-java@v4
       with:
@@ -32,7 +32,16 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-      #place to configure maven build[I modified it]
+      #place to configure maven build
     - name: Build with Maven
       run: mvn clean test -Dsuite=regression
 
+      #configure to store the log file, using 'Upload a Build Artifact' in marketplace
+    - name: Upload a Build Artifact
+      if: always()
+      uses: actions/upload-artifact@v4.6.2
+      with:
+    # Artifact name
+        name: Logs #artifact name
+    # A file, directory or wildcard pattern that describes what to upload
+        path: logs/
