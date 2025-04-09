@@ -60,3 +60,11 @@ jobs:
         name: TestNG Result
         path: target/surefire-reports/junitreports/TEST-*.xml 
         reporter: java-junit
+
+    - name: Upload Extent Report
+      if: always()
+      uses: actions/upload-artifact@v4.6.2
+      with:
+        name: Extent-Report
+        path: test-output/reports/
+     
