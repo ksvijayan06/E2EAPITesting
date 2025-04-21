@@ -14,13 +14,13 @@ permissions:
   pull-requests: write
   issues: write
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  schedule:
-    - cron: '30 7 * * *' #crone job schedule at 1.00PM IST
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+#   schedule:
+#     - cron: '30 7 * * *' #crone job schedule at 1.00PM IST
 
 jobs:
   build:
