@@ -21,12 +21,13 @@ public class TestListeners implements ITestListener {
 		logger.info("Test Failure: {}", result.getName());
 		
 		logger.error("Exception: ", result.getThrowable());
-
+		ExtentReportManager.tesThreadLocal.get().fail(result.getThrowable());
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		logger.info("Test Success: {}", result.getName());
+		ExtentReportManager.tesThreadLocal.get().pass("Request completed Successfully");
 	}
 
 	public void onStart(ITestContext context) {

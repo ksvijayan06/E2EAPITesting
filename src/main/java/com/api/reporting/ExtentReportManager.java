@@ -13,7 +13,7 @@ import io.restassured.specification.FilterableRequestSpecification;
 
 public class ExtentReportManager {
 	private static ExtentReports extentReports;
-	private static ThreadLocal<ExtentTest> tesThreadLocal = new ThreadLocal<>();
+	public static ThreadLocal<ExtentTest> tesThreadLocal = new ThreadLocal<>();
 
 	private static ExtentReports createInstance() {
 		if (extentReports == null) {
@@ -84,12 +84,13 @@ public class ExtentReportManager {
 		responseDetails.append("</pre>");
 
 		tesThreadLocal.get().log(Status.INFO, "Response Details : " + responseDetails.toString());
-
+		/*
 		if (response.getStatusCode() >= 200 && response.getStatusCode() < 300) {
 			tesThreadLocal.get().pass("Request completed Successfully");
 		} else {
 			tesThreadLocal.get().fail("Request Failed with Status code : " + response.getStatusCode());
 		}
+		*/
 	}
 
 	public static void endTest() {

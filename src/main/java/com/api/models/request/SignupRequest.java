@@ -1,5 +1,12 @@
 package com.api.models.request;
 
+import java.util.HashMap;
+
+import com.api.service.AuthenticationService;
+import com.api.testData.DataSource;
+
+import io.restassured.response.Response;
+
 public class SignupRequest {
 	private String username;
 	private String password;
@@ -17,7 +24,8 @@ public class SignupRequest {
 		this.mobileNumber = builder.mobileNumber;
 	}
 
-	public static class Builder {
+	private static class Builder {
+
 		private String username;
 		private String password;
 		private String email;
@@ -82,6 +90,19 @@ public class SignupRequest {
 
 	public String getMobileNumber() {
 		return mobileNumber;
+	}
+
+	public static SignupRequest createNewRequest(String testCase) {
+		HashMap<String, String> map = DataSource.getInstance().getTestData(testCase);
+		Builder builder = new Builder();
+		return builder.email(map.get("email")).firstName(map.get("firstName")).lastName(map.get("lastName"))
+				.mobileNumber(map.get("mobileNumber")).username(map.get("username"))
+				.password(map.get("password")).build();
+	}
+	
+	public Response triggerRequest() {
+		AuthenticationService auth = new AuthenticationService();
+		return auth.signup(this);
 	}
 
 }

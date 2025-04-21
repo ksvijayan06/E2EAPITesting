@@ -38,12 +38,13 @@ public class AuthTest {
 	@Test(enabled = true)
 	public void accountCreationTest() {
 		AuthenticationService auth = new AuthenticationService();
-		SignupRequest.Builder signupForm = new SignupRequest.Builder();
-		SignupRequest req = signupForm.email("domik12861@gamebcs.com").firstName("vijayan").lastName("k s")
-				.password("vjn1231").username("vjn1").mobileNumber("1231231231").build();
-
-		Response res = auth.signup(req);
-		res.prettyPrint();
+		SignupRequest request = SignupRequest.createNewRequest("TC_Auth_001");
+//		SignupRequest.Builder signupForm = new SignupRequest.Builder();
+//		SignupRequest req = signupForm.email("domik12861@gamebcs.com").firstName("vijayan").lastName("k s")
+//				.password("vjn1231").username("vjn1").mobileNumber("1231231231").build();
+//
+		Response res = auth.signup(request);
+//		res.prettyPrint();
 //		System.out.println("My res :" +res.prettyPrint());
 
 	}
