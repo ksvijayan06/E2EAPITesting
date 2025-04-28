@@ -17,6 +17,6 @@ public class TC_Auth_005 {
 	  Response response = request.triggerRequest();
 	  
 	  Assert.assertEquals(response.statusCode(), 500);
-	  Assert.assertEquals(response.getBody().jsonPath().getString("error"), "System Error");
+	  	Assert.assertEquals(response.getBody().jsonPath().getString("error"), "System Error");
   }
 }
